@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+    <!-- SCRIPTs -->
+    <script src="js/game.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+
+<body class="min-vh-100 theme" style="margin-top: 0px;">
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 id="offcanvasRightLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body d-flex flex-column flex-shrink-0 p-3 text-white">
+            <ul class="nav nav-pills flex-column mb-auto">
+
+                <li class="pb-2">
+
+                    <div class="card">
+                        <div class="card-header bg-dark text-center h4">
+                            Select Deck
+                        </div>
+
+                        <!-- TODO: add show 'currently active' deck -->
+                        <div class="card-body p-0 d-flex flex-row flex-wrap justify-content-center ">
+
+                            <button type="button" class="btn btn-default p-1" onclick="changeDeck('funny')">
+                                <img class="deck-selector" src="assets/decks/funny/image2.jpg" height="100" width="100"
+                                    alt="funny" title="funnydeck">
+                            </button>
+
+                            <button type="button" class="btn btn-default p-1" onclick="changeDeck('lol')">
+                                <img class="deck-selector" src="assets/decks/lol/image2.jpg" height="100" width="100"
+                                    alt="lol" title="loldeck">
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                </li>
+                <li class="pb-2">
+
+
+                    <div class="card">
+                        <div class="card-header bg-dark text-center h4">
+                            Highscores
+                        </div>
+
+                        <div class="card-body p-0">
+
+                            <ul class="list-group list-group-flush" id="highscore-list-mobile">
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                </li>
+                <li>
+                    <button class="btn btn-dark  w-100 text-center" type="button" onclick="initCards()">
+                        <span class="h4">Restart</span>
+                    </button>
+                </li>
+            </ul>
+<!---
+            <a href="https://gitchaoslord.github.io" target="_blank" rel="noopener noreferrer"
+                class="w-100 text-center h4">
+                By John Kotronakis
+            </a>---->
+
+
+
+        </div>
+    </div>
+
+
+    <nav id="navbar" class="d-none navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Memory card game</a>
+
+
+            <form class="d-flex">
+
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <i class="bi bi-list"></i>
+                </button>
+
+            </form>
+
+        </div>
+    </nav>
+
+
+
+    <section class="container-fluid">
+
+        <div class="row h-100">
+
+            <div id="sidebar-left" class="col-lg-2 border-end border-primary bg-white h-100 vh-100">
+
+                <div class="pt-2 d-flex flex-column flex-shrink-0 text-white h-100">
+
+                    <ul class="nav nav-pills flex-column mb-auto">
+
+                        <li class="pb-2">
+
+                            <div class="card">
+
+                                <div class="card-header bg-dark text-center h4">
+                                    Select Deck
+                                </div>
+
+                                <!-- TODO: add show 'currently active' deck -->
+                                <div class="card-body p-0 d-flex flex-row flex-wrap justify-content-center ">
+
+                                    <button type="button" class="btn btn-default p-1" onclick="changeDeck('funny')">
+                                        <img class="deck-selector" src="assets/decks/funny/image2.jpg" height="100"
+                                            width="100" alt="funny" title="funnydeck">
+                                    </button>
+
+                                    <button type="button" class="btn btn-default p-1" onclick="changeDeck('lol')">
+                                        <img class="deck-selector" src="assets/decks/lol/image2.jpg" height="100"
+                                            width="100" alt="lol" title="loldeck">
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                        </li>
+                        <li class="pb-2">
+
+
+                            <div class="card">
+                                <div class="card-header bg-dark text-center h4">
+                                    Highscores
+                                </div>
+
+                                <div class="card-body p-0">
+
+                                    <ul class="list-group list-group-flush" id="highscore-list">
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+
+                        </li>
+                        <li>
+                            <button class="btn btn-dark  w-100 text-center" type="button" onclick="initCards()">
+                                <span class="h4">Restart</span>
+                            </button>
+                        </li>
+                    </ul>
+
+                   <!---- <a href="https://gitchaoslord.github.io" target="_blank" rel="noopener noreferrer"
+                        class="w-100 text-center h4">
+                        By John Kotronakis
+                    </a>----->
+                </div>
+
+            </div>
+
+            <div class="col-lg-8 col-md-12">
+
+                <div class="d-flex py-3 h5 mb-0 justify-content-around">
+                    <span>Tries:
+                        <span id="Tries"></span></span>
+                    <span>Score:
+                        <span id="Score"></span></span>
+                </div>
+
+                <!-- gamecardgrid -->
+                <div class="row text-center pb-3" id="CardList">
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+</body>
+
+</html>
